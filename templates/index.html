@@ -3,7 +3,7 @@
 
 <head>
   <script type="text/javascript" src="js/brython.js"></script>
-  <script type="text/javascript" src="brython_stdlib.js"></script>
+  <script type="text/javascript" src="js/brython_stdlib.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -142,7 +142,7 @@
           <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
           <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
             -->
-          <!--  <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="">-->
+          <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="user_input" placeholder="">
           <!---<script type="text/python">
             from browser import document, alert
                 
@@ -158,7 +158,8 @@
       
             def show_results(response):
                 if response.status==200 or response.status==0:
-                    document["result"].html = response.text
+                    alert(response.text)
+                    #document["result"].html = response.text
                 else:
                     warnings.warn(response.text)
       
@@ -170,21 +171,22 @@
                 req.bind('complete', show_results)
                 req.open('POST', '/predict', True)
                 req.set_header('content-type','application/json')
-                data = json.dumps({})
-                #data = json.dumps({'user_input': document['user_input'].value})
-                #data = json.dumps({'user_input': "foo"})
-                alert(data)
+                #data = json.dumps({'user_input':''})
+                #data = '{"user_input": "buy cheap viagra today"}' 
+                data = json.dumps({'user_input': document['user_input'].value})
+                #data = json.dumps({"user_input": "buy cheap viagra today"})
+                #alert(data)
                 req.send(data)
                 #alert(document['user_input'].value)
                 #alert("fdsf")
-            document["predict_button"].bind("click", get_prediction)
+            document["test"].bind("click", get_prediction)
           </script>
-          <textarea id="user_input"></textarea>
-		        <button id="predict_button">Predict!</button>
+          <!--<textarea id="user_input"></textarea>-->
+		        <!--<button id="predict_button">Predict!</button>-->
 		        <div id="result"></div>
 
-
-          <!--<button type="submit" class="btn btn-primary mx-auto" id="test">Even more cats</button>-->
+          <br>
+          <button type="submit" class="btn btn-primary mx-auto" id="test">spam?</button>
 
         </div>
       </div>
